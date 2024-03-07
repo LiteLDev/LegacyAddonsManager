@@ -1,5 +1,8 @@
 {
     "name": "${pluginName}",
     "entry": "${pluginFile}",
-    "type": "native"
+    "type": "native",
+    "author": "LiteLDev",
+    "description": "An addons manager ported from LiteLoaderBDS",
+    "version": "0.1.0"
 }
