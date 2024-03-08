@@ -111,7 +111,7 @@ std::string GetLevelName() {
 
 // Helper
 std::string GetAddonJsonFile(Addon::Type type) {
-    std::string addonListFile = "./worlds" + GetLevelName();
+    std::string addonListFile = "./worlds/" + GetLevelName();
     switch (type) {
     case Addon::Type::BehaviorPack:
         return addonListFile + "/world_behavior_packs.json";
@@ -271,7 +271,7 @@ bool InstallAddonToLevel(const std::string& addonDir, const std::string& addonNa
 
 
     // copy files
-    std::string levelPath = "./worlds" + GetLevelName();
+    std::string levelPath = "./worlds/" + GetLevelName();
     std::string toPath    = levelPath + subPath + "/" + addonName;
 
     // Avoid duplicate names or update addon if same uuid
@@ -444,6 +444,7 @@ bool AddonsManager::uninstall(std::string nameOrUuid) {
             addonLogger.error("ll.addonsHelper.error.addonNotFound"_tr());
             return false;
         }
+        std::string addonName = addon->name;
         RemoveAddonFromList(*addon);
         std::error_code ec;
         std::filesystem::remove_all(ll::string_utils::str2wstr(addon->directory), ec);
@@ -452,7 +453,7 @@ bool AddonsManager::uninstall(std::string nameOrUuid) {
                 addons.erase(i);
                 break;
             }
-        addonLogger.info("ll.addonsHelper.uninstall.success"_tr(addon->name));
+        addonLogger.info("ll.addonsHelper.uninstall.success"_tr(addonName));
     } catch (...) {}
     return false;
 }
@@ -524,7 +525,7 @@ void FindAddons(std::string jsonPath, std::string packsDir) {
 }
 
 void BuildAddonsList() {
-    std::string levelPath = "./worlds" + GetLevelName();
+    std::string levelPath = "./worlds/" + GetLevelName();
 
     FindAddons(levelPath + "/world_behavior_packs.json", levelPath + "/behavior_packs");
     FindAddons(levelPath + "/world_resource_packs.json", levelPath + "/resource_packs");
