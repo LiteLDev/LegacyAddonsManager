@@ -1,4 +1,4 @@
-#include "AddonsHelper.h"
+#include "LegacyAddonsManager.h"
 #include "ll/api/utils/StringUtils.h"
 #include "mc/server/commands/CommandPermissionLevel.h"
 #include "nlohmann/json_fwd.hpp"
@@ -21,11 +21,11 @@
 #include <memory>
 #include <nlohmann/json.hpp>
 
-namespace AddonsHelper {
+namespace LegacyAddonsManager {
 
 #define VALID_ADDON_FILE_EXTENSION std::set<std::string>({".mcpack", ".mcaddon", ".zip"})
-#define ZIP_PROGRAM_PATH           "./plugins/AddonsHelper/7z/7za.exe"
-#define ADDON_INSTALL_TEMP_DIR     "./plugins/AddonsHelper/Temp/"
+#define ZIP_PROGRAM_PATH           "./plugins/LegacyAddonsManager/7z/7za.exe"
+#define ADDON_INSTALL_TEMP_DIR     "./plugins/LegacyAddonsManager/Temp/"
 #define ADDON_INSTALL_MAX_WAIT     30000
 
 std::pair<int, std::string> NewProcessSync(const std::string& process, int timeLimit = -1, bool noReadOutput = true) {
@@ -84,7 +84,7 @@ std::pair<int, std::string> NewProcessSync(const std::string& process, int timeL
     return {exitCode, strOutput};
 }
 
-#define addonLogger AddonsHelper::getInstance().getSelf().getLogger()
+#define addonLogger LegacyAddonsManager::getInstance().getSelf().getLogger()
 using ll::i18n_literals::operator""_tr;
 
 std::vector<Addon> addons;
@@ -541,7 +541,7 @@ bool AutoInstallAddons(std::string path) {
     std::error_code ec;
     if (!fs::exists(ll::string_utils::str2wstr(path))) {
         fs::create_directories(ll::string_utils::str2wstr(path), ec);
-        addonLogger.info("ll.addonsHelper.autoInstall.tip.dirCreated"_tr("./plugins/AddonsHelper/addons"));
+        addonLogger.info("ll.addonsHelper.autoInstall.tip.dirCreated"_tr("./plugins/LegacyAddonsManager/addons"));
         return false;
     }
     std::vector<std::string> toInstallList;
@@ -770,51 +770,55 @@ void InitAddonsHelper() {
     fs::remove_all(ADDON_INSTALL_TEMP_DIR);
     fs::create_directories(ADDON_INSTALL_TEMP_DIR);
 
-    AutoInstallAddons("./plugins/AddonsHelper/addons");
+    AutoInstallAddons("./plugins/LegacyAddonsManager/addons");
     BuildAddonsList();
 
     fs::remove_all(ADDON_INSTALL_TEMP_DIR);
 }
 
 
-AddonsHelper::AddonsHelper() = default;
+LegacyAddonsManager::LegacyAddonsManager() = default;
 
-AddonsHelper& AddonsHelper::getInstance() {
-    static AddonsHelper instance;
+LegacyAddonsManager& LegacyAddonsManager::getInstance() {
+    static LegacyAddonsManager instance;
     return instance;
 }
 
-ll::plugin::NativePlugin& AddonsHelper::getSelf() const { return *mSelf; }
+ll::plugin::NativePlugin& LegacyAddonsManager::getSelf() const { return *mSelf; }
 
-bool AddonsHelper::load(ll::plugin::NativePlugin& self) {
+bool LegacyAddonsManager::load(ll::plugin::NativePlugin& self) {
     mSelf = std::addressof(self);
     getSelf().getLogger().info("loading...");
-    ll::i18n::load("./plugins/AddonsHelper/lang/");
+    ll::i18n::load("./plugins/LegacyAddonsManager/lang/");
     InitAddonsHelper();
     return true;
 }
 
-bool AddonsHelper::enable() {
+bool LegacyAddonsManager::enable() {
     RegisterCommand();
     return true;
 }
 
-bool AddonsHelper::disable() { return true; }
+bool LegacyAddonsManager::disable() { return true; }
 
 extern "C" {
 _declspec(dllexport) bool ll_plugin_load(ll::plugin::NativePlugin& self) {
-    return AddonsHelper::getInstance().load(self);
+    return LegacyAddonsManager::getInstance().load(self);
 }
 
-_declspec(dllexport) bool ll_plugin_enable(ll::plugin::NativePlugin&) { return AddonsHelper::getInstance().enable(); }
+_declspec(dllexport) bool ll_plugin_enable(ll::plugin::NativePlugin&) {
+    return LegacyAddonsManager::getInstance().enable();
+}
 
-_declspec(dllexport) bool ll_plugin_disable(ll::plugin::NativePlugin&) { return AddonsHelper::getInstance().disable(); }
+_declspec(dllexport) bool ll_plugin_disable(ll::plugin::NativePlugin&) {
+    return LegacyAddonsManager::getInstance().disable();
+}
 
 /// @warning Unloading the plugin may cause a crash if the plugin has not released all of its
 /// resources. If you are unsure, keep this function commented out.
 // _declspec(dllexport) bool ll_plugin_unload(ll::plugin::NativePlugin&) {
-//     return AddonsHelper::getInstance().unload();
+//     return LegacyAddonsManager::getInstance().unload();
 // }
 }
 
-} // namespace AddonsHelper
+} // namespace LegacyAddonsManager

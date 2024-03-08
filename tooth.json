@@ -1,9 +1,9 @@
 {
     "format_version": 2,
-    "tooth": "github.com/LiteLDev/AddonsHelper",
+    "tooth": "github.com/LiteLDev/LegacyAddonsManager",
     "version": "0.1.0",
     "info": {
-        "name": "AddonsHelper",
+        "name": "LegacyAddonsManager",
         "description": "An addons manager ported from LiteLoaderBDS",
         "author": "LiteLDev",
         "tags": [
@@ -11,15 +11,15 @@
             "plugin"
         ]
     },
-    "asset_url": "https://github.com/LiteLDev/AddonsHelper/releases/download/v0.1.0/AddonsHelper-windows-x64.zip",
+    "asset_url": "https://github.com/LiteLDev/LegacyAddonsManager/releases/download/v0.1.0/LegacyAddonsManager-windows-x64.zip",
     "prerequisites": {
         "github.com/LiteLDev/LeviLamina": "0.9.0"
     },
     "files": {
         "place": [
             {
-                "src": "AddonsHelper/*",
-                "dest": "plugins/AddonsHelper/"
+                "src": "LegacyAddonsManager/*",
+                "dest": "plugins/LegacyAddonsManager/"
             }
         ]
     }

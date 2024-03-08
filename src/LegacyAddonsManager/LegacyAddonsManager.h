@@ -2,7 +2,7 @@
 
 #include <ll/api/plugin/NativePlugin.h>
 
-namespace AddonsHelper {
+namespace LegacyAddonsManager {
 
 struct Addon {
     enum class Type { ResourcePack, BehaviorPack };
@@ -27,16 +27,16 @@ public:
     static Addon*              findAddon(const std::string& nameOrUuid, bool fuzzy = false);
 };
 
-class AddonsHelper {
-    AddonsHelper();
+class LegacyAddonsManager {
+    LegacyAddonsManager();
 
 public:
-    AddonsHelper(AddonsHelper&&)                 = delete;
-    AddonsHelper(const AddonsHelper&)            = delete;
-    AddonsHelper& operator=(AddonsHelper&&)      = delete;
-    AddonsHelper& operator=(const AddonsHelper&) = delete;
+    LegacyAddonsManager(LegacyAddonsManager&&)                 = delete;
+    LegacyAddonsManager(const LegacyAddonsManager&)            = delete;
+    LegacyAddonsManager& operator=(LegacyAddonsManager&&)      = delete;
+    LegacyAddonsManager& operator=(const LegacyAddonsManager&) = delete;
 
-    static AddonsHelper& getInstance();
+    static LegacyAddonsManager& getInstance();
 
     [[nodiscard]] ll::plugin::NativePlugin& getSelf() const;
 
@@ -53,4 +53,4 @@ private:
     ll::plugin::NativePlugin* mSelf{};
 };
 
-} // namespace AddonsHelper
+} // namespace LegacyAddonsManager

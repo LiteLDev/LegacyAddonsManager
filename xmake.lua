@@ -8,7 +8,7 @@ if not has_config("vs_runtime") then
     set_runtimes("MD")
 end
 
-target("AddonsHelper")
+target("LegacyAddonsManager")
     add_cxflags("/EHa", "/utf-8")
     add_defines("NOMINMAX", "UNICODE")
     add_files("src/**.cpp")
