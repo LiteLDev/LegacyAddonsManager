@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "Configurazione delle estensioni non trovata!",
+        "addonFileNotFound": "File di estensione \"{}\" non trovato!",
+        "addonNotFound": "Estensione <{}> non trovata!",
+        "outOfRange": "Indice del'estensione {} fuori dall'intervallo consentito",
+        "unsupportedFileType": "Trovato un tipo di file non supportato!",
+        "parsingEnabledAddonsList": "Errore durante l'analisi dell'elenco di estensioni abilitate",
+        "noAddonInstalled": "Nessuna estensione è stata installata.",
+        "installationAborted": "Processo di installazione interrotto!"
+      },
+      "displayError": "Errore: {}",
+      "removeAddonFromList": {
+        "fail": "Impossibile rimuovere l'estensione <{}> dal file di configurazione!",
+        "success": "Rimossa l'estensione <{}> dal file di configurazione."
+      },
+      "addAddonToList": {
+        "invalidList": "File di lista di estensioni {} non valido, creato un backup a {} e reimpostata la configurazione predefinita",
+        "fail": "Impossibile inserire l'estensione {} in {}!",
+        "success": "Aggiunta l'estensione <{}> al file di configurazione."
+      },
+      "install": {
+        "installing": "Installando l'estensione <{}>...",
+        "error": {
+          "failToUncompress": {
+            "msg": "Impossibile estrarre l'estensione {}!",
+            "exitCode": "Codice di uscita: {}",
+            "programOutput": "Output del programma:\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "Estensione <{}> disinstallata."
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "Directory creata. È possibile spostare i file di estensione compressi su {} per essere installati al prossimo avvio."
+        },
+        "working": "{} nuove estensioni trovate da installare...",
+        "installed": "L'estensione {} è stata installata.",
+        "installedCount": "{} estensioni installate."
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Estensioni: {} estensioni installate:"
+          }
+        }
+      }
+    }
+  }
+}

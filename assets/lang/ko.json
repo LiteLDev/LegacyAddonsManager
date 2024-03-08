@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "애드온 config를 찾을 수 없습니다.",
+        "addonFileNotFound": "애드온 파일 \"{}\" 을(를) 찾을 수 없습니다.",
+        "addonNotFound": "애드온 \"{}\" 을(를) 찾을 수 없습니다.",
+        "outOfRange": "애드온 인덱스 {} 범위 초과",
+        "unsupportedFileType": "지원하지 않는 확장자의 파일이 발견되었습니다.",
+        "parsingEnabledAddonsList": "활성화된 애드온을 읽는 도중 에러 발생",
+        "noAddonInstalled": "아무 애드온도 설치돼 있지 않습니다.",
+        "installationAborted": "설치 프로세스가 취소됐습니다."
+      },
+      "displayError": "오류: {}",
+      "removeAddonFromList": {
+        "fail": "Config 파일에서 애드온 <{}> 를 제거하지 못했습니다.",
+        "success": "config 파일에서 애드온 <{}> 를 제거했습니다."
+      },
+      "addAddonToList": {
+        "invalidList": "{} 애드온 리스트 파일이 유효하지 않습니다. {} 경로로 백업하고 리스트 파일을 기본값으로 되돌려주세요.",
+        "fail": "애드온 {} 를 {} 로 넣지 못했습니다!",
+        "success": "애드온 <{}> 를 config 파일에 추가했습니다."
+      },
+      "install": {
+        "installing": "애드온 <{}> 를 설치합니다...",
+        "error": {
+          "failToUncompress": {
+            "msg": "애드온 {} 의 압축을 풀지 못했습니다.",
+            "exitCode": "코드 종료: {}",
+            "programOutput": "프로그램 출력:\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "애드온 <{}> 가 제거되었습니다."
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "해당 경로가 생성되었습니다. 다음 실행 시점에 설치를 진행하려면 압축된 애드온 파일을 {} 에 넣어주세요."
+        },
+        "working": "{} 개의 새로 발견된 애드온을 설치합니다...",
+        "installed": "애드온 {} 가 설치됐습니다.",
+        "installedCount": "{} 개의 애드온이 설치됐습니다."
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Addons: {} 개의 애드온이 설치됐습니다:"
+          }
+        }
+      }
+    }
+  }
+}

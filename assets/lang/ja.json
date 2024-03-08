@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "アドオンの設定が見つかりません。",
+        "addonFileNotFound": "アドオンファイル \"{}\" が見つかりません。",
+        "addonNotFound": "アドオン <{}> が見つかりません。",
+        "outOfRange": "Addonの索引 {} が範囲外です",
+        "unsupportedFileType": "サポートされていない種類のファイルが見つかりました。",
+        "parsingEnabledAddonsList": "有効なアドオンリストの解析中にエラーが発生しました",
+        "noAddonInstalled": "アドオンがインストールされていません。",
+        "installationAborted": "インストールが中止されました。"
+      },
+      "displayError": "エラー: {}",
+      "removeAddonFromList": {
+        "fail": "設定ファイルからアドオン<{}>を削除できませんでした。",
+        "success": "設定ファイルからアドオン<{}>を削除しました。"
+      },
+      "addAddonToList": {
+        "invalidList": "無効なアドオンリストファイル {} は {} にバックアップし、アドオンリストをデフォルトにリセットしました",
+        "fail": "アドオン {} を {} に登録できませんでした。",
+        "success": "設定ファイルに addon <{}> を追加しました。"
+      },
+      "install": {
+        "installing": "アドオン <{}> をインストール中...",
+        "error": {
+          "failToUncompress": {
+            "msg": "アドオン {} の解凍に失敗しました",
+            "exitCode": "終了コード: {}",
+            "programOutput": "プログラム出力:\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "アドオン <{}> がアンインストールされました。"
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "ディレクトリが作成されました。圧縮されたアドオンファイルを {} に移動して、次回起動時にインストールすることができます。"
+        },
+        "working": "{} 件の新しいアドオンがインストールされました。処理中です...",
+        "installed": "アドオン{} がインストールされました。",
+        "installedCount": "{} アドオンがインストールされました。"
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "アドオン: {} アドオンがインストールされました:"
+          }
+        }
+      }
+    }
+  }
+}

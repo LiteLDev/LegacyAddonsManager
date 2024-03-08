@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "Konfigurasi addon tidak ditemukan!",
+        "addonFileNotFound": "File addon \"{}\" tidak ditemukan!",
+        "addonNotFound": "Addon <{}> tidak ditemukan!",
+        "outOfRange": "Indeks addon {} di luar jangkauan",
+        "unsupportedFileType": "Jenis file yang tidak didukung ditemukan!",
+        "parsingEnabledAddonsList": "Kesalahan saat mem-parsing daftar add-on yang diaktifkan",
+        "noAddonInstalled": "Tidak ada addon yang dipasang.",
+        "installationAborted": "Kemajuan penginstalan dibatalkan!"
+      },
+      "displayError": "Kesalahan: {}",
+      "removeAddonFromList": {
+        "fail": "Gagal menghapus addon <{}> dari file konfigurasi!",
+        "success": "Addon <{}> dihapus dari file konfigurasi."
+      },
+      "addAddonToList": {
+        "invalidList": "File Daftar Addon Tidak Valid {}, buat cadangan ke {} dan setel ulang ke default",
+        "fail": "Gagal menyisipkan addon {} ke {}!",
+        "success": "Menambahkan addon <{}> ke file konfigurasi."
+      },
+      "install": {
+        "installing": "Memasang addon <{}>...",
+        "error": {
+          "failToUncompress": {
+            "msg": "Gagal mengompres addon {}!",
+            "exitCode": "Kode Keluar: {}",
+            "programOutput": "Keluaran Program:\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "Addon <{}> dicopot pemasangannya."
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "Direktori dibuat. Anda bisa memindahkan file Addon terkompresi ke {} untuk diinstal pada peluncuran berikutnya."
+        },
+        "working": "{} addon baru ditemukan untuk dipasang. Bekerja...",
+        "installed": "Addon {} telah dipasang.",
+        "installedCount": "{} addon telah dipasang."
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Addon: {} addon terpasang:"
+          }
+        }
+      }
+    }
+  }
+}

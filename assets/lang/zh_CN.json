@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "未找到addon配置文件",
+        "addonFileNotFound": "未找到addon文件 \"{}\"！",
+        "addonNotFound": "未找到addon <{}>！",
+        "outOfRange": "Addon索引 {} 超出范围",
+        "unsupportedFileType": "不支持的文件类型！",
+        "parsingEnabledAddonsList": "在解析已启用的addons列表时发生错误",
+        "noAddonInstalled": "没有addon被安装",
+        "installationAborted": "安装进程终止！"
+      },
+      "displayError": "错误: {}",
+      "removeAddonFromList": {
+        "fail": "从配置文件移除addon <{}> 失败！",
+        "success": "已将addon <{}> 从配置文件移除"
+      },
+      "addAddonToList": {
+        "invalidList": "无效的addon列表文件 {}，已备份到 {} 并重置为默认值",
+        "fail": "无法将 addon {} 插入到 {}！",
+        "success": "已将addon <{}> 添加到配置文件"
+      },
+      "install": {
+        "installing": "正在安装addon <{}>...",
+        "error": {
+          "failToUncompress": {
+            "msg": "解压addon {} 失败！",
+            "exitCode": "退出代码: {}",
+            "programOutput": "程序输出:\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "Addon <{}> 已卸载。"
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "目录已创建。你可以移动已压缩的addon文件到 {} 以在下次启动时安装"
+        },
+        "working": "{} 个新的要安装的addon(s)已被找到。处理中...",
+        "installed": "Addon {} 已被安装。",
+        "installedCount": "{} 个addon(s)已被安装"
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Addons: {} 个addon(s)已安装:"
+          }
+        }
+      }
+    }
+  }
+}

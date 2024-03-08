@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "Eklenti konfigürasyonu bulunamadı!",
+        "addonFileNotFound": "Eklenti dosyası, \"{}\" bulunamadı!",
+        "addonNotFound": "Eklenti, <{}> bulunamadı!",
+        "outOfRange": "Addon dizini {} aralık dışı",
+        "unsupportedFileType": "Desteklenmeyen dosya türü bulundu!",
+        "parsingEnabledAddonsList": "Etkin addon listesi ayrıştırılırken hata oluştu",
+        "noAddonInstalled": "Hiçbir addon yüklenemedi.",
+        "installationAborted": "Yükleme işlemi iptal edildi!"
+      },
+      "displayError": "Hata: {}",
+      "removeAddonFromList": {
+        "fail": "Addon <{}> konfigürasyon dosyasından kaldırılamadı!",
+        "success": "Addon <{}> konfigürasyon dosyasından kaldırıldı."
+      },
+      "addAddonToList": {
+        "invalidList": "Geçersiz Eklenti Listesi Dosyası {}, {} 'ye yedekle ve varsayılana sıfırla",
+        "fail": "{} eklentisi {} içine eklenemedi!",
+        "success": "Konfigürasyon dosyasına addon <{}> eklendi."
+      },
+      "install": {
+        "installing": "Addon kuruluyor <{}>...",
+        "error": {
+          "failToUncompress": {
+            "msg": "Addon {} sıkıştırması açılamadı!",
+            "exitCode": "Çıkış Kodu: {}",
+            "programOutput": "Program Çıktısı:\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "Addon <{}> kaldırıldı."
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "Dizin oluşturuldu. Sıkıştırılmış Addon dosyalarını bir sonraki açılışta yüklenmek üzere {} konumuna taşıyabilirsiniz."
+        },
+        "working": "{} tane yüklenecek yeni addon(lar) bulundu. Yükleniyor...",
+        "installed": "Addon {} yüklendi.",
+        "installedCount": "{} addon(lar) kuruldu."
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Addons: {} addon(lar) yüklendi:"
+          }
+        }
+      }
+    }
+  }
+}

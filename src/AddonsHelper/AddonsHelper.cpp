@@ -696,7 +696,7 @@ void RegisterCommand() {
                 }
             } else {
                 if (addons.empty()) {
-                    output.success("ll.addonsHelper.error.noAddonInstalled"_tr());
+                    output.error("ll.addonsHelper.error.noAddonInstalled"_tr());
                     return;
                 }
 
@@ -789,6 +789,7 @@ ll::plugin::NativePlugin& AddonsHelper::getSelf() const { return *mSelf; }
 bool AddonsHelper::load(ll::plugin::NativePlugin& self) {
     mSelf = std::addressof(self);
     getSelf().getLogger().info("loading...");
+    ll::i18n::load("./plugins/AddonsHelper/lang/");
     InitAddonsHelper();
     return true;
 }

@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "Configuration de l'addon introuvable !",
+        "addonFileNotFound": "Fichier d'addon \"{}\" introuvable !",
+        "addonNotFound": "Addon <{}> introuvable !",
+        "outOfRange": "Indice de l'addon {} hors de portée",
+        "unsupportedFileType": "Fichier non pris en charge trouvé !",
+        "parsingEnabledAddonsList": "Erreur lors de l'analyse de la liste des addons activés",
+        "noAddonInstalled": "Aucun addon n'a été installé.",
+        "installationAborted": "Progression de l'installation annulée !"
+      },
+      "displayError": "Erreur : {}",
+      "removeAddonFromList": {
+        "fail": "Impossible de supprimer l'addon <{}> du fichier de configuration !",
+        "success": "Addon <{}> enlevé du fichier de configuration."
+      },
+      "addAddonToList": {
+        "invalidList": "Fichier de liste d'addons {} non valide, sauvegarde de {} et réinitialisation à la valeur par défaut",
+        "fail": "Impossible d'insérer l'addon {} dans {} !",
+        "success": "Addon <{}> ajouté dans le fichier de configuration."
+      },
+      "install": {
+        "installing": "Installation de l'addon <{}>...",
+        "error": {
+          "failToUncompress": {
+            "msg": "Échec de décompression de l'addon {} !",
+            "exitCode": "Code de sortie : {}",
+            "programOutput": "Sortie du programme :\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "Addon <{}> désinstallé."
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "Répertoire créé. Vous pouvez déplacer les fichiers d'addon compressés vers {} pour être installés au prochain lancement."
+        },
+        "working": "{} nouveau(x) addon(s) trouvé(s) à installer. En cours d'installation...",
+        "installed": "L'Addon {} a été installé.",
+        "installedCount": "{} addon(s) ont été installé."
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Addons : {} addon(s) installé(s) :"
+          }
+        }
+      }
+    }
+  }
+}

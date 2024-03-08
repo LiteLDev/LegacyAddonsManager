@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "Addon config not found!",
+        "addonFileNotFound": "Addon file \"{}\" not found!",
+        "addonNotFound": "Addon <{}> not found!",
+        "outOfRange": "Addon index {} out of range",
+        "unsupportedFileType": "Unsupported type of file found!",
+        "parsingEnabledAddonsList": "Error when parsing enabled addons list",
+        "noAddonInstalled": "No addon was installed.",
+        "installationAborted": "Install progress aborted!"
+      },
+      "displayError": "Error: {}",
+      "removeAddonFromList": {
+        "fail": "Fail to remove addon <{}> from config file!",
+        "success": "Removed addon <{}> from config file."
+      },
+      "addAddonToList": {
+        "invalidList": "Invalid Addon List File {}, backup to {} and reset to default",
+        "fail": "Fail to insert the addon {} into {}!",
+        "success": "Added addon <{}> to config file."
+      },
+      "install": {
+        "installing": "Installing addon <{}>...",
+        "error": {
+          "failToUncompress": {
+            "msg": "Fail to uncompress addon {}!",
+            "exitCode": "Exit Code: {}",
+            "programOutput": "Program Output:\n{}"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "Addon <{}> uninstalled."
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "Directory created. You can move compressed Addon files to {} to get installed at next launch."
+        },
+        "working": "{} new addon(s) found to install. Working...",
+        "installed": "Addon {} has beed installed.",
+        "installedCount": "{} addon(s) was installed."
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Addons: {} addon(s) installed:"
+          }
+        }
+      }
+    }
+  }
+}

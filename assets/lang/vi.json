@@ -1,0 +1,54 @@
+{
+  "ll": {
+    "addonsHelper": {
+      "error": {
+        "addonConfigNotFound": "Không tìm thấy config Addon!",
+        "addonFileNotFound": "Không tìm thấy tệp Addon \"{}\"!",
+        "addonNotFound": "Addon <{}> không tìm thấy!",
+        "outOfRange": "Index Addon {} nằm ngoài phạm vi",
+        "unsupportedFileType": "Tìm thấy file không được hỗ trợ!",
+        "parsingEnabledAddonsList": "Lỗi khi phân tích cú pháp danh sách Addon đã bật",
+        "noAddonInstalled": "Không có Addon nào được cài đặt.",
+        "installationAborted": "Tiến trình cài đặt đã bị hủy bỏ!"
+      },
+      "displayError": "Lỗi: {}",
+      "removeAddonFromList": {
+        "fail": "Không xóa được addon <{}> khỏi tệp config!",
+        "success": "Không xóa được addon <{}> khỏi tệp config."
+      },
+      "addAddonToList": {
+        "invalidList": "Tệp danh sách Addon không hợp lệ {}, sao lưu vào {} và đặt lại về mặc định",
+        "fail": "Không thể chèn Addon {} vào {}!",
+        "success": "Đã thêm Addon <{}> vào config."
+      },
+      "install": {
+        "installing": "Đang cài đặt Addon <{}>...",
+        "error": {
+          "failToUncompress": {
+            "msg": "Không thể giải nén Addon {}!",
+            "exitCode": "Mã thoát: {}",
+            "programOutput": "Đầu ra thiết bị"
+          }
+        }
+      },
+      "uninstall": {
+        "success": "Đã gỡ cài đặt Addon <{}>."
+      },
+      "autoInstall": {
+        "tip": {
+          "dirCreated": "Đã tạo thư mục. Bạn có thể di chuyển các tệp Addon đã nén vào {} để cài đặt vào lần khởi chạy tiếp theo."
+        },
+        "working": "{} tìm thấy (các) tiện ích mới để cài đặt. Đang làm việc...",
+        "installed": "Tiện ích {} đã được cài đặt.",
+        "installedCount": "{} (các) tiện ích đã được cài đặt."
+      },
+      "cmd": {
+        "output": {
+          "list": {
+            "overview": "Addons: Đã tải addon(s):"
+          }
+        }
+      }
+    }
+  }
+}
