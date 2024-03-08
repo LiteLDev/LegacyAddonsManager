@@ -24,7 +24,7 @@
 namespace LegacyAddonsManager {
 
 #define VALID_ADDON_FILE_EXTENSION std::set<std::string>({".mcpack", ".mcaddon", ".zip"})
-#define ZIP_PROGRAM_PATH           "./plugins/LegacyAddonsManager/7z/7za.exe"
+#define ZIP_PROGRAM_PATH           "./plugins/LegacyAddonsManager/7za.exe"
 #define ADDON_INSTALL_TEMP_DIR     "./plugins/LegacyAddonsManager/Temp/"
 #define ADDON_INSTALL_MAX_WAIT     30000
 
