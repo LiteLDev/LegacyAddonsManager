@@ -637,7 +637,7 @@ void RegisterCommand() {
     command.overload<AddonsCommand>()
         .required("operation")
         .required("index")
-        .execute<[](CommandOrigin const&, CommandOutput& output, AddonsCommand const& commandContent) {
+        .execute([](CommandOrigin const&, CommandOutput& output, AddonsCommand const& commandContent) {
             switch (commandContent.operation) {
             case AddonsOperation::enable: {
                 auto allAddons = AddonsManager::getAllAddons();
@@ -674,68 +674,64 @@ void RegisterCommand() {
                 break;
             }
             }
-        }>();
-    command.overload<AddonsCommand>()
-        .text("list")
-        .optional("name")
-        .execute<[](CommandOrigin const&, CommandOutput& output, AddonsCommand const& commandContent) {
-            if (!commandContent.name.empty()) {
-                auto addon = AddonsManager::findAddon(commandContent.name, true);
-                if (addon) {
-                    std::ostringstream oss;
-                    oss << "Addon <" << addon->name << "§r>" << (addon->enable ? " §aEnabled" : " §cDisabled")
-                        << "\n\n";
-                    oss << "- §aName§r:  " << addon->name << "\n";
-                    oss << "- §aUUID§r:  " << addon->uuid << "\n";
-                    oss << "- §aDescription§r:  " << addon->description << "\n";
-                    oss << "- §aVersion§r:  v" << addon->version.to_string() << "\n";
-                    oss << "- §aType§r:  " << magic_enum::enum_name(addon->type) << "\n";
-                    oss << "- §aDirectory§r:  " << addon->directory << "\n";
-                    output.success(oss.str());
-                } else {
-                    output.error("ll.addonsHelper.error.addonNotfound"_tr(commandContent.name));
-                }
+        });
+    command.overload<AddonsCommand>().text("list").optional("name").execute([](CommandOrigin const&,
+                                                                               CommandOutput&       output,
+                                                                               AddonsCommand const& commandContent) {
+        if (!commandContent.name.empty()) {
+            auto addon = AddonsManager::findAddon(commandContent.name, true);
+            if (addon) {
+                std::ostringstream oss;
+                oss << "Addon <" << addon->name << "§r>" << (addon->enable ? " §aEnabled" : " §cDisabled") << "\n\n";
+                oss << "- §aName§r:  " << addon->name << "\n";
+                oss << "- §aUUID§r:  " << addon->uuid << "\n";
+                oss << "- §aDescription§r:  " << addon->description << "\n";
+                oss << "- §aVersion§r:  v" << addon->version.to_string() << "\n";
+                oss << "- §aType§r:  " << magic_enum::enum_name(addon->type) << "\n";
+                oss << "- §aDirectory§r:  " << addon->directory << "\n";
+                output.success(oss.str());
             } else {
-                if (addons.empty()) {
-                    output.error("ll.addonsHelper.error.noAddonInstalled"_tr());
-                    return;
-                }
+                output.error("ll.addonsHelper.error.addonNotfound"_tr(commandContent.name));
+            }
+        } else {
+            if (addons.empty()) {
+                output.error("ll.addonsHelper.error.noAddonInstalled"_tr());
+                return;
+            }
 
-                output.success("ll.addonsHelper.cmd.output.list.overview"_tr(addons.size()));
-                for (auto index = 0; index < addons.size(); ++index) {
-                    auto&       addon     = addons[index];
-                    std::string addonName = addon.name;
-                    if (addonName.find("§") == std::string::npos) addonName = "§b" + addonName;
-                    std::string desc = addon.description;
-                    if (desc.find("§") == std::string::npos) desc = "§7" + desc;
+            output.success("ll.addonsHelper.cmd.output.list.overview"_tr(addons.size()));
+            for (auto index = 0; index < addons.size(); ++index) {
+                auto&       addon     = addons[index];
+                std::string addonName = addon.name;
+                if (addonName.find("§") == std::string::npos) addonName = "§b" + addonName;
+                std::string desc = addon.description;
+                if (desc.find("§") == std::string::npos) desc = "§7" + desc;
 
-                    std::string addonType = (addon.type == Addon::Type::ResourcePack ? "ResourcePack" : "BehaviorPack");
-                    if (addon.enable) {
-                        output.success(fmt::format(
-                            "§e{:>2}§r: {} §a[v{}] §8({})",
-                            index + 1,
-                            addonName,
-                            addon.version.to_string(),
-                            addonType
-                        ));
-                        output.success(fmt::format("    {}", desc));
-                    } else {
-                        output.success(fmt::format(
-                            "§e{:>2}§r: §8{} [v{}] ({})",
-                            index + 1,
-                            ll::string_utils::removeEscapeCode(addonName),
-                            addon.version.to_string(),
-                            addonType
-                        ));
-                        output.success(fmt::format("    §8Disabled"));
-                    }
+                std::string addonType = (addon.type == Addon::Type::ResourcePack ? "ResourcePack" : "BehaviorPack");
+                if (addon.enable) {
+                    output.success(fmt::format(
+                        "§e{:>2}§r: {} §a[v{}] §8({})",
+                        index + 1,
+                        addonName,
+                        addon.version.to_string(),
+                        addonType
+                    ));
+                    output.success(fmt::format("    {}", desc));
+                } else {
+                    output.success(fmt::format(
+                        "§e{:>2}§r: §8{} [v{}] ({})",
+                        index + 1,
+                        ll::string_utils::removeEscapeCode(addonName),
+                        addon.version.to_string(),
+                        addonType
+                    ));
+                    output.success(fmt::format("    §8Disabled"));
                 }
             }
-        }>();
-    command.overload<AddonsCommand>()
-        .text("list")
-        .required("index")
-        .execute<[](CommandOrigin const&, CommandOutput& output, AddonsCommand const& commandContent) {
+        }
+    });
+    command.overload<AddonsCommand>().text("list").required("index").execute(
+        [](CommandOrigin const&, CommandOutput& output, AddonsCommand const& commandContent) {
             auto allAddons = AddonsManager::getAllAddons();
             if (commandContent.index - 1 >= 0 && commandContent.index - 1 < static_cast<int>(allAddons.size())) {
                 Addon*             addon = allAddons[commandContent.index - 1];
@@ -751,18 +747,18 @@ void RegisterCommand() {
             } else {
                 output.error("ll.addonsHelper.error.outOfRange"_tr(commandContent.index));
             }
-        }>();
-    command.overload<AddonsCommand>()
-        .text("install")
-        .required("name")
-        .execute<[](CommandOrigin const&, CommandOutput& output, AddonsCommand const& commandContent) {
+        }
+    );
+    command.overload<AddonsCommand>().text("install").required("name").execute(
+        [](CommandOrigin const&, CommandOutput& output, AddonsCommand const& commandContent) {
             if (AddonsManager::install(commandContent.name)) {
                 std::filesystem::remove_all(ADDON_INSTALL_TEMP_DIR);
                 output.success();
             } else {
                 output.error("Failed to install addon {0}"_tr(commandContent.name));
             }
-        }>();
+        }
+    );
 }
 
 void InitAddonsHelper() {
