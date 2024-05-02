@@ -143,7 +143,7 @@ std::optional<Addon> parseAddonFromPath(const std::filesystem::path& addonPath) 
             manifestPath = addonPath;
             manifestPath.append("pack_manifest.json");
         }
-        auto manifestFile = ll::file_utils::readFile(ll::string_utils::u8str2str(manifestPath.u8string()));
+        auto manifestFile = ll::file_utils::readFile(manifestPath);
         if (!manifestFile || manifestFile->empty()) throw std::exception("manifest.json not found!");
         std::string content = FixMojangJson(*manifestFile);
 
