@@ -1,7 +1,7 @@
 {
     "format_version": 2,
     "tooth": "github.com/LiteLDev/LegacyAddonsManager",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "info": {
         "name": "LegacyAddonsManager",
         "description": "An addons manager ported from LiteLoaderBDS",
@@ -11,12 +11,12 @@
             "plugin"
         ]
     },
-    "asset_url": "https://github.com/LiteLDev/LegacyAddonsManager/releases/download/v0.4.1/LegacyAddonsManager-windows-x64.zip",
+    "asset_url": "https://github.com/LiteLDev/LegacyAddonsManager/releases/download/v0.5.0/LegacyAddonsManager-windows-x64.zip",
     "dependencies": {
         "gitea.litebds.com/ShrBox/7-zip": "23.x"
     },
     "prerequisites": {
-        "github.com/LiteLDev/LeviLamina": "0.12.x"
+        "github.com/LiteLDev/LeviLamina": "0.13.x"
     },
     "files": {
         "place": [
