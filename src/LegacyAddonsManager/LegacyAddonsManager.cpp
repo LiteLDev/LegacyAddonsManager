@@ -1,32 +1,34 @@
 #include "LegacyAddonsManager.h"
+#include "ll/api/command/Command.h"
+#include "ll/api/command/CommandHandle.h"
+#include "ll/api/command/CommandRegistrar.h"
+#include "ll/api/i18n/I18n.h"
+#include "ll/api/io/FileUtils.h"
+#include "ll/api/mod/RegisterHelper.h"
+#include "ll/api/service/Bedrock.h"
+#include "ll/api/utils/ErrorUtils.h"
 #include "ll/api/utils/StringUtils.h"
+#include "mc/deps/json/Json.h"
+#include "mc/deps/json/JsonHelpers.h"
+#include "mc/server/commands/CommandOrigin.h"
+#include "mc/server/commands/CommandOutput.h"
 #include "mc/server/commands/CommandPermissionLevel.h"
+#include "mc/server/common/PropertiesSettings.h"
+#include "mc/world/level/Level.h"
+#include "nlohmann/json.hpp"
 #include "nlohmann/json_fwd.hpp"
 
 #include <Windows.h>
-#include <ll/api/command/Command.h>
-#include <ll/api/command/CommandHandle.h>
-#include <ll/api/command/CommandRegistrar.h>
-#include <ll/api/i18n/I18n.h>
-#include <ll/api/io/FileUtils.h>
-#include <ll/api/plugin/NativePlugin.h>
-#include <ll/api/service/Bedrock.h>
-#include <ll/api/utils/ErrorUtils.h>
-#include <mc/deps/json/Json.h>
-#include <mc/deps/json/JsonHelpers.h>
-#include <mc/server/commands/CommandOrigin.h>
-#include <mc/server/commands/CommandOutput.h>
-#include <mc/server/common/PropertiesSettings.h>
-#include <mc/world/level/Level.h>
+#include <filesystem>
 #include <memory>
-#include <nlohmann/json.hpp>
 
-namespace LegacyAddonsManager {
+
+namespace legacy_addons_manager {
 
 #define VALID_ADDON_FILE_EXTENSION std::set<std::string>({".mcpack", ".mcaddon", ".zip"})
 #define ZIP_PROGRAM_PATH           "./7za.exe"
-#define ADDON_INSTALL_TEMP_DIR     "./plugins/LegacyAddonsManager/Temp/"
-#define ADDON_INSTALL_MAX_WAIT     30000
+std::string ADDON_INSTALL_TEMP_DIR;
+#define ADDON_INSTALL_MAX_WAIT 30000
 
 std::pair<int, std::string> NewProcessSync(const std::string& process, int timeLimit = -1, bool noReadOutput = true) {
     SECURITY_ATTRIBUTES sa;
@@ -366,7 +368,7 @@ bool AddonsManager::install(std::string packPath) {
                 "{} x \"{}\" -o{} -aoa",
                 ZIP_PROGRAM_PATH,
                 packPath,
-                "\"" ADDON_INSTALL_TEMP_DIR + name + "/\""
+                "\"" + ADDON_INSTALL_TEMP_DIR + name + "/\""
             ),
             ADDON_INSTALL_MAX_WAIT
         );
@@ -537,17 +539,17 @@ void BuildAddonsList() {
     });
 }
 
-bool AutoInstallAddons(std::string path) {
+bool AutoInstallAddons(std::filesystem::path path) {
     namespace fs = std::filesystem;
     std::error_code ec;
-    if (!fs::exists(ll::string_utils::str2wstr(path))) {
-        fs::create_directories(ll::string_utils::str2wstr(path), ec);
-        addonLogger.info("ll.addonsHelper.autoInstall.tip.dirCreated"_tr("./plugins/LegacyAddonsManager/addons"));
+    if (!fs::exists(path)) {
+        fs::create_directories(path, ec);
+        addonLogger.info("ll.addonsHelper.autoInstall.tip.dirCreated"_tr(path));
         return false;
     }
     std::vector<std::string> toInstallList;
 
-    fs::directory_iterator ent(ll::string_utils::str2wstr(path));
+    fs::directory_iterator ent(path);
     for (auto& file : ent) {
         if (!file.is_regular_file()) continue;
 
@@ -767,27 +769,21 @@ void InitAddonsHelper() {
     fs::remove_all(ADDON_INSTALL_TEMP_DIR);
     fs::create_directories(ADDON_INSTALL_TEMP_DIR);
 
-    AutoInstallAddons("./plugins/LegacyAddonsManager/addons");
+    AutoInstallAddons(LegacyAddonsManager::getInstance().getSelf().getModDir() / "addons");
     BuildAddonsList();
 
     fs::remove_all(ADDON_INSTALL_TEMP_DIR);
 }
 
+static std::unique_ptr<LegacyAddonsManager> instance;
 
-LegacyAddonsManager::LegacyAddonsManager() = default;
+LegacyAddonsManager& LegacyAddonsManager::getInstance() { return *instance; }
 
-LegacyAddonsManager& LegacyAddonsManager::getInstance() {
-    static LegacyAddonsManager instance;
-    return instance;
-}
-
-ll::plugin::NativePlugin& LegacyAddonsManager::getSelf() const { return *mSelf; }
-
-bool LegacyAddonsManager::load(ll::plugin::NativePlugin& self) {
-    mSelf = std::addressof(self);
-    getSelf().getLogger().info("loading...");
-    ll::i18n::load("./plugins/LegacyAddonsManager/lang/");
+bool LegacyAddonsManager::load() {
+    ADDON_INSTALL_TEMP_DIR = LegacyAddonsManager::getInstance().getSelf().getModDir().string() + "/Temp/";
+    ll::i18n::load(getSelf().getLangDir());
     InitAddonsHelper();
+    return true;
     return true;
 }
 
@@ -798,24 +794,6 @@ bool LegacyAddonsManager::enable() {
 
 bool LegacyAddonsManager::disable() { return true; }
 
-extern "C" {
-_declspec(dllexport) bool ll_plugin_load(ll::plugin::NativePlugin& self) {
-    return LegacyAddonsManager::getInstance().load(self);
-}
+} // namespace legacy_addons_manager
 
-_declspec(dllexport) bool ll_plugin_enable(ll::plugin::NativePlugin&) {
-    return LegacyAddonsManager::getInstance().enable();
-}
-
-_declspec(dllexport) bool ll_plugin_disable(ll::plugin::NativePlugin&) {
-    return LegacyAddonsManager::getInstance().disable();
-}
-
-/// @warning Unloading the plugin may cause a crash if the plugin has not released all of its
-/// resources. If you are unsure, keep this function commented out.
-// _declspec(dllexport) bool ll_plugin_unload(ll::plugin::NativePlugin&) {
-//     return LegacyAddonsManager::getInstance().unload();
-// }
-}
-
-} // namespace LegacyAddonsManager
+LL_REGISTER_MOD(legacy_addons_manager::LegacyAddonsManager, legacy_addons_manager::instance)

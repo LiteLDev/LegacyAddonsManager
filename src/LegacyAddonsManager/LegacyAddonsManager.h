@@ -1,8 +1,8 @@
 #pragma once
 
-#include <ll/api/plugin/NativePlugin.h>
+#include <ll/api/mod/NativeMod.h>
 
-namespace LegacyAddonsManager {
+namespace legacy_addons_manager {
 
 struct Addon {
     enum class Type { ResourcePack, BehaviorPack };
@@ -28,29 +28,24 @@ public:
 };
 
 class LegacyAddonsManager {
-    LegacyAddonsManager();
 
 public:
-    LegacyAddonsManager(LegacyAddonsManager&&)                 = delete;
-    LegacyAddonsManager(const LegacyAddonsManager&)            = delete;
-    LegacyAddonsManager& operator=(LegacyAddonsManager&&)      = delete;
-    LegacyAddonsManager& operator=(const LegacyAddonsManager&) = delete;
-
     static LegacyAddonsManager& getInstance();
 
-    [[nodiscard]] ll::plugin::NativePlugin& getSelf() const;
+    LegacyAddonsManager(ll::mod::NativeMod& self) : mSelf(self) {}
 
-    /// @return True if the plugin is loaded successfully.
-    bool load(ll::plugin::NativePlugin&);
+    [[nodiscard]] ll::mod::NativeMod& getSelf() const { return mSelf; }
 
-    /// @return True if the plugin is enabled successfully.
+    bool load();
+
     bool enable();
 
-    /// @return True if the plugin is disabled successfully.
     bool disable();
 
+    // bool unload();
+
 private:
-    ll::plugin::NativePlugin* mSelf{};
+    ll::mod::NativeMod& mSelf;
 };
 
-} // namespace LegacyAddonsManager
+} // namespace legacy_addons_manager
