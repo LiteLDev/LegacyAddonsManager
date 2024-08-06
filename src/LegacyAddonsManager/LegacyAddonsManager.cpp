@@ -91,8 +91,7 @@ using ll::i18n_literals::operator""_tr;
 
 std::vector<Addon> addons;
 
-bool AutoInstallAddons(std::string path);
-
+bool AutoInstallAddons(std::filesystem::path path);
 
 std::string GetLevelName() {
     if (ll::service::getPropertiesSettings().has_value()) {
